@@ -284,3 +284,14 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
                                 Cancelar
                             </button>
                             <button type="submit" className="btn-guardar" disabled={loading}>
+                                {loading ? 'Guardando...' : 'Guardar'}
+                            </button>
+                        </div>
+                    </form>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default ModalUsuario;
