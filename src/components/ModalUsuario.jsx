@@ -92,7 +92,7 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
         setLoading(true);
 
         try {
-            const url = '${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php';
+            const url = `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php';
             const method = modo === 'crear' ? 'POST' : 'PUT';
             
             const dataToSend = {

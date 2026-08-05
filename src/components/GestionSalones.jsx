@@ -92,7 +92,7 @@ function GestionSalones({ colegioId, colegioNombre }) {
         const token = localStorage.getItem('token');
         const url = modoEdicion 
             ? `${import.meta.env.VITE_API_BASE_URL}/salones.php?id=${salonSeleccionado.id}`
-            : '${import.meta.env.VITE_API_BASE_URL}/salones.php';
+            : `${import.meta.env.VITE_API_BASE_URL}/salones.php';
         const method = modoEdicion ? 'PUT' : 'POST';
 
         const dataToSend = {

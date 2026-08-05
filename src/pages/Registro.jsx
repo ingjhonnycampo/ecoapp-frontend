@@ -43,7 +43,7 @@ function Registro({ onVolver }) {
 
     const cargarColegios = async () => {
         try {
-            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/colegios_publicos.php');
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/colegios_publicos.php');
             const data = await response.json();
             if (data.success) {
                 setColegios(data.data);
@@ -126,7 +126,7 @@ function Registro({ onVolver }) {
         setLoading(true);
 
         try {
-            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/registro_estudiante.php', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/registro_estudiante.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

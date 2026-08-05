@@ -25,7 +25,7 @@ function ModalCambiarPassword({ usuario, onCerrar }) {
         setLoading(true);
 
         try {
-            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
