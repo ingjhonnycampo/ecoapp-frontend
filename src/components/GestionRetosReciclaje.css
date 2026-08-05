@@ -1,0 +1,705 @@
+.gestion-retos-reciclaje {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 2px solid #bbf7d0;
+  padding-top: 0.5rem;
+}
+
+/* Header */
+.header-retos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.titulo-seccion-retos {
+  font-size: 1.2rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.descripcion-seccion-retos {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.acciones-retos {
+  display: flex;
+  justify-content: center;
+}
+
+.acciones-retos .btn-primario {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  background-color: #15803d;
+  color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.acciones-retos .btn-primario:hover {
+  background-color: #166534;
+}
+
+.toast {
+  position: fixed;
+  top: 5rem;              /* antes era 1rem */
+  right: 1rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  z-index: 1000;          /* suficiente para ir encima del contenido */
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
+}
+
+.toast-exito {
+  background: #ecfdf3;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.toast-error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.toast-icono {
+  font-size: 1rem;
+}
+
+/* Mensajes */
+.mensajes-retos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.alert {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.alert-error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Card genérica */
+.card-retos {
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Formulario */
+.form-retos {
+  margin-top: 0.5rem;
+}
+
+.form-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.form-retos-editando {
+  border: 1px solid #bfdbfe;
+  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+}
+
+.badge-editando {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background-color: #e0f2fe;
+  color: #1d4ed8;
+}
+
+.form-retos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-group-full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.9rem;
+}
+
+.form-group textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.2);
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Selector de salones */
+.select-all-salones {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.select-all-salones label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.lista-salones-participantes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem 0.75rem;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0.35rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.item-salon {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.texto-salon {
+  word-break: break-word;
+}
+
+.texto-auxiliar {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Estado badge */
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.estado-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  margin-right: 6px;
+  background-color: currentColor;
+}
+
+.estado-activo {
+  color: #0f766e;
+  background-color: #ccfbf1;
+}
+
+.estado-cerrado {
+  color: #b91c1c;
+  background-color: #fee2e2;
+}
+
+.estado-borrador {
+  color: #92400e;
+  background-color: #fef3c7;
+}
+
+/* Lista de retos */
+.lista-retos {
+  margin-top: 0.5rem;
+}
+
+.lista-retos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge-conteo {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+/* Tabla de retos */
+.tabla-retos-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabla-retos {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.tabla-retos th,
+.tabla-retos td {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabla-retos th {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+.celda-nombre-reto .nombre-reto {
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre-reto-texto {
+  font-weight: 500;
+}
+
+.nombre-reto-descripcion {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.texto-fecha {
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.empty-state-retos {
+  padding: 0.5rem 0;
+}
+
+/* Acciones */
+.celda-acciones-reto {
+  white-space: nowrap;
+}
+
+.btn-icono {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.15rem;
+  margin-right: 0.15rem;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 999px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-icono.editar:hover {
+  background-color: #e0f2fe;
+  transform: translateY(-1px);
+}
+
+.btn-icono.eliminar:hover {
+  background-color: #fee2e2;
+  transform: translateY(-1px);
+}
+
+/* Vista móvil de retos (por defecto oculta en desktop) */
+.lista-retos-mobile {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.reto-card-mobile {
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.5rem;
+  background-color: #f9fafb;
+}
+
+.reto-card-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.25rem;
+}
+
+.reto-card-body h4 {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+}
+
+.reto-card-descripcion {
+  margin: 0 0 0.25rem;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.reto-card-fechas,
+.reto-card-creado {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.reto-card-footer {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+/* Modal confirmación */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-contenido {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+}
+
+.modal-titulo {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.modal-texto {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  text-align: center;
+}
+
+.modal-resaltado {
+  font-weight: 600;
+  color: #b91c1c;
+}
+
+.modal-acciones {
+  margin-top: 0.9rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn-secundario {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-secundario:hover {
+  background-color: #f3f4f6;
+}
+
+.btn-peligro {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: none;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-peligro:hover {
+  background-color: #b91c1c;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .form-retos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lista-salones-participantes {
+    grid-template-columns: 1fr;
+    max-height: 240px;
+  }
+
+  .tabla-retos {
+    display: none;
+  }
+
+  .lista-retos-mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-retos {
+    padding: 0.6rem 0.65rem;
+  }
+
+  .titulo-seccion-retos {
+    font-size: 1.05rem;
+  }
+}
+
+/* Overlay del modal de detalle, ocupa toda la pantalla */
+.modal-detalle-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+/* Panel ancho centrado */
+.modal-detalle-panel {
+  background-color: #ffffff;
+  border-radius: 0.9rem;
+  padding: 1.25rem 1.5rem 1rem;
+  width: 100%;
+  max-width: 960px;          /* ancho grande */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.25);
+}
+
+/* Header del panel */
+.modal-detalle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.6rem;
+}
+
+.modal-detalle-titulo {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.modal-detalle-subtitulo {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.modal-detalle-cerrar {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0.1rem 0.3rem;
+  border-radius: 999px;
+}
+
+.modal-detalle-cerrar:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* Cuerpo: dos columnas */
+.modal-detalle-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 0.9rem 0.25rem 0.75rem;
+  overflow-y: auto;
+}
+
+/* Columna genérica */
+.modal-detalle-col {
+  min-width: 0;
+}
+
+/* Columna de salones con borde lateral opcional */
+.modal-detalle-col-salones {
+  border-left: 1px solid #e5e7eb;
+  padding-left: 1rem;
+}
+
+/* Footer */
+.modal-detalle-footer {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.6rem;
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Títulos y texto del detalle */
+.detalle-reto-nombre {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.detalle-reto-descripcion {
+  margin-top: 0.35rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.92rem;
+  color: #4b5563;
+}
+
+/* Grid con datos (fechas, estado, creado) */
+.detalle-reto-datos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.3rem;
+}
+
+.detalle-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.detalle-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.detalle-valor {
+  font-size: 0.9rem;
+  color: #111827;
+}
+
+/* Pill para estado usando clases existentes + un fondo suave */
+.detalle-estado-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+/* Lista de salones en detalle */
+.lista-salones-detalle {
+  margin: 0.4rem 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.lista-salones-detalle li {
+  padding: 0.35rem 0.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 0.35rem;
+  background-color: #f9fafb;
+}
+
+.salon-titulo {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.salon-jornada {
+  display: block;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.1rem;
+}
+
+/* Responsive: en pantallas pequeñas, apilar columnas */
+@media (max-width: 768px) {
+  .modal-detalle-panel {
+    margin: 0 0.75rem;
+    padding: 1rem;
+  }
+
+  .modal-detalle-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .modal-detalle-col-salones {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 0.75rem;
+  }
+}

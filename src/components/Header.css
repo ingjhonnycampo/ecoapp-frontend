@@ -1,0 +1,532 @@
+.main-header {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.header-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text {
+    display: flex;
+    gap: 5px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.eco-text {
+    color: white;
+}
+
+.app-text {
+    background: linear-gradient(135deg, #fff 0%, #e8f5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Navegación Desktop */
+.desktop-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 15px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user-name {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.user-colegio {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-rol-badge {
+    padding: 8px 10px;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.desktop-logout {
+    background: rgba(231, 76, 60, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.desktop-logout:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+/* Menú hamburguesa - oculto en desktop */
+.menu-hamburguesa {
+    display: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 28px;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.menu-hamburguesa:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Menú móvil desplegable */
+.mobile-menu {
+    display: none;
+    background: rgba(34, 153, 84, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    animation: slideDown 0.3s ease-out;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+}
+
+.mobile-nav-link {
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02);
+}
+
+.mobile-logout {
+    margin: 10px 15px 15px;
+    background: rgba(231, 76, 60, 0.9);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mobile-logout:hover,
+.mobile-logout:active {
+    background: #c0392b;
+}
+
+/* Modales */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+    padding: 20px;
+}
+
+.modal-logout {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+}
+
+.modal-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.modal-logout h2 {
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    font-size: 28px;
+}
+
+.modal-logout p {
+    color: #7f8c8d;
+    margin: 0 0 30px 0;
+    font-size: 16px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-confirmar,
+.btn-cancelar {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-confirmar {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+}
+
+.btn-confirmar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+}
+
+.btn-cancelar {
+    background: #ecf0f1;
+    color: #2c3e50;
+}
+
+.btn-cancelar:hover {
+    background: #bdc3c7;
+}
+
+/* Modal de despedida */
+.modal-despedida {
+    background: white;
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+}
+
+.despedida-icon {
+    font-size: 100px;
+    margin-bottom: 20px;
+    animation: wave 0.6s ease-in-out infinite;
+}
+
+.modal-despedida h2 {
+    color: #27ae60;
+    margin: 0 0 10px 0;
+    font-size: 32px;
+}
+
+.modal-despedida p {
+    color: #7f8c8d;
+    margin: 0 0 30px 0;
+    font-size: 18px;
+}
+
+.despedida-loader {
+    width: 100%;
+    max-width: 250px;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.despedida-loader::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    animation: loading 2.5s linear;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+    }
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    75% { transform: rotate(-20deg); }
+}
+
+@keyframes loading {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* RESPONSIVE - TABLETS */
+@media (max-width: 1024px) {
+    .desktop-nav {
+        gap: 8px;
+    }
+    
+    .nav-link {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
+
+/* RESPONSIVE - MÓVILES */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 12px 15px;
+    }
+
+    /* Ocultar navegación desktop */
+    .desktop-nav {
+        display: none;
+    }
+
+    /* Ocultar botón logout desktop */
+    .desktop-logout {
+        display: none;
+    }
+
+    /* Mostrar menú hamburguesa */
+    .menu-hamburguesa {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Mostrar menú móvil cuando está abierto */
+    .mobile-menu {
+        display: block;
+    }
+
+    /* Ajustar logo */
+    .header-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    /* Ajustar info de usuario */
+    .user-info {
+        padding: 8px 12px;
+        gap: 10px;
+    }
+
+    .user-name {
+        font-size: 13px;
+    }
+
+    .user-colegio {
+        font-size: 10px;
+        max-width: 120px;
+    }
+
+    .user-rol-badge {
+        padding: 6px 8px;
+        font-size: 16px;
+    }
+}
+
+/* RESPONSIVE - MÓVILES PEQUEÑOS */
+@media (max-width: 480px) {
+    .header-container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .header-logo {
+        width: 35px;
+        height: 35px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+
+    .user-info {
+        padding: 6px 10px;
+        gap: 8px;
+    }
+
+    .user-name {
+        font-size: 12px;
+    }
+
+    .user-colegio {
+        font-size: 9px;
+        max-width: 100px;
+    }
+
+    .user-rol-badge {
+        padding: 5px 6px;
+        font-size: 14px;
+    }
+
+    .menu-hamburguesa {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+
+    .mobile-nav-link {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .mobile-logout {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .modal-logout,
+    .modal-despedida {
+        padding: 30px 20px;
+    }
+
+    .modal-icon,
+    .despedida-icon {
+        font-size: 60px;
+    }
+
+    .modal-logout h2,
+    .modal-despedida h2 {
+        font-size: 22px;
+    }
+
+    .modal-logout p,
+    .modal-despedida p {
+        font-size: 14px;
+    }
+}

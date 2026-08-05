@@ -1,0 +1,825 @@
+/* ========================================
+   LAYOUT GENERAL
+   ======================================== */
+.gestion-colegio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header superior */
+.header-gestion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.header-info-colegio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.info-text-colegio {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-text-colegio h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.btn-volver {
+  border: none;
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-volver:hover {
+  background: #e0e7ff;
+}
+
+.header-info-colegio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.escudo-compacto {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.escudo-compacto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sin-escudo-compacto {
+  font-size: 1.5rem;
+}
+
+.info-text-colegio h1 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.detalles-colegio {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.detalle-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.detalle-icon {
+  font-size: 1rem;
+}
+
+/* ========================================
+   NAV SECCIONES
+   ======================================== */
+.gestion-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.nav-btn {
+  border: none;
+  background: #f3f4ff;
+  color: #4b5563;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.nav-btn .nav-icon {
+  font-size: 1rem;
+}
+
+.nav-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+}
+
+.nav-btn:hover:not(.active) {
+  background: #e5e7ff;
+}
+
+/* ========================================
+   CONTENIDO
+   ======================================== */
+.gestion-content {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+.seccion-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.seccion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.seccion-header h2 {
+  margin: 0;
+}
+
+.seccion-descripcion {
+  margin: 0.1rem 0 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.seccion-header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.seccion-body {
+  margin-top: 0.5rem;
+}
+
+/* ========================================
+   BOTONES GENERALES
+   ======================================== */
+.btn-primario {
+  border: none;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primario:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secundario {
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #374151;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secundario:hover {
+  background: #f3f4f6;
+}
+
+.btn-danger {
+  border: none;
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: #fca5a5;
+}
+
+/* ========================================
+   ESTADOS / EMPTY
+   ======================================== */
+.texto-auxiliar {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.empty-state {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  border: 1px dashed #e5e7eb;
+  text-align: center;
+  color: #6b7280;
+}
+
+.empty-icon {
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* ========================================
+   FILTROS (USUARIOS)
+   ======================================== */
+.filtros-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.filtro-item {
+  width: 100%;
+}
+
+.input-filtro,
+.select-filtro {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #f8f9ff;
+  transition: all 0.3s ease;
+}
+
+.input-filtro:focus,
+.select-filtro:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.select-filtro {
+  cursor: pointer;
+}
+
+/* ========================================
+   TABLA DE USUARIOS
+   ======================================== */
+.tabla-usuarios {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-usuarios table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-usuarios thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.tabla-usuarios thead th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tabla-usuarios tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.tabla-usuarios tbody tr:hover {
+  background: #f8f9ff;
+}
+
+.tabla-usuarios tbody tr.usuario-inactivo {
+  opacity: 0.5;
+}
+
+.tabla-usuarios tbody td {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #2c3e50;
+}
+
+/* Célula usuario (avatar + nombre) */
+.usuario-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.usuario-avatar-mini {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* BADGES USUARIOS */
+.badge-rol-tabla {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.badge-rol-tabla.coordinador {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.badge-rol-tabla.estudiante {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.badge-estado {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.badge-estado.activo {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge-estado.inactivo {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ACCIONES USUARIOS */
+.acciones-cell {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-accion {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-accion.editar {
+  background: #e3f2fd;
+}
+
+.btn-accion.editar:hover {
+  background: #2196f3;
+  transform: scale(1.1);
+}
+
+.btn-accion.password {
+  background: #fff3e0;
+}
+
+.btn-accion.password:hover {
+  background: #ff9800;
+  transform: scale(1.1);
+}
+
+.btn-accion.desactivar {
+  background: #ffebee;
+}
+
+.btn-accion.desactivar:hover {
+  background: #f44336;
+  transform: scale(1.1);
+}
+
+.btn-accion.activar {
+  background: #e8f5e9;
+}
+
+.btn-accion.activar:hover {
+  background: #4caf50;
+  transform: scale(1.1);
+}
+
+/* ========================================
+   PESAJE: HEADER
+   ======================================== */
+.seccion-header-centrado {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.seccion-header-inner-centrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.titulo-pesaje {
+  margin: 0;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ========================================
+   TABLA DE RETOS - PESAJE
+   ======================================== */
+.gestion-colegio-container .tabla-retos-pesaje {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gestion-colegio-container .tabla-retos-pesaje thead th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje th,
+.gestion-colegio-container .tabla-retos-pesaje td {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje tbody tr:hover {
+  background: #f8f9ff;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje tbody td {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #2c3e50;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .nombre-reto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .nombre-reto-texto {
+  font-weight: 600;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .nombre-reto-descripcion {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .estado-badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .estado-activo {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .estado-borrador {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .estado-cerrado {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .btn-pesaje-reto {
+  border: none;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gestion-colegio-container .tabla-retos-pesaje .btn-pesaje-reto:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   ESTADÍSTICAS
+   ======================================== */
+.seccion-estadisticas {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bloque-estadistica {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+}
+
+.bloque-estadistica h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.bloque-estadistica .seccion-descripcion {
+  margin-bottom: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.stat-numero {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Tablas estadísticas */
+.tabla-retos-resumen table,
+.tabla-ranking-retos table,
+.tabla-ranking-historico table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-retos-resumen th,
+.tabla-retos-resumen td,
+.tabla-ranking-retos th,
+.tabla-ranking-retos td,
+.tabla-ranking-historico th,
+.tabla-ranking-historico td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.tabla-retos-resumen thead tr,
+.tabla-ranking-retos thead tr,
+.tabla-ranking-historico thead tr {
+  background-color: #f9fafb;
+}
+
+.tabla-ranking-retos tbody tr:nth-child(even),
+.tabla-ranking-historico tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.ranking-header {
+  margin-bottom: 8px;
+}
+
+.selector-reto-ranking {
+  margin-top: 8px;
+}
+
+.selector-reto-ranking label {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.selector-reto-ranking select {
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+}
+
+/* ========================================
+   FOOTER STATS
+   ======================================== */
+.stats-rapidas-footer {
+  margin-top: 1rem;
+}
+
+.stats-rapidas-footer .stats-title {
+  margin: 0 0 0.5rem;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1024px) {
+  .gestion-colegio-container {
+    padding: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filtros-container {
+    grid-template-columns: 1fr;
+  }
+
+  .tabla-usuarios {
+    overflow-x: auto;
+  }
+
+  .tabla-usuarios table {
+    min-width: 800px;
+  }
+
+  .tabla-retos-pesaje {
+    overflow-x: auto;
+  }
+
+  .tabla-retos-pesaje table {
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-gestion {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gestion-nav {
+    flex-wrap: wrap;
+  }
+
+  .acciones-cell {
+    flex-direction: column;
+  }
+
+  .btn-accion {
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== SOLO PARA IMPRESIÓN ===== */
+@media print {
+  /* Ajustes de tabla para impresión */
+  .tabla-ranking-retos table,
+  .tabla-ranking-historico table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .tabla-ranking-retos th,
+  .tabla-ranking-retos td,
+  .tabla-ranking-historico th,
+  .tabla-ranking-historico td {
+    border: 1px solid #333;
+    padding: 8px 6px;
+    font-size: 11pt;
+    text-align: center;
+  }
+
+  .tabla-ranking-retos thead tr,
+  .tabla-ranking-historico thead tr {
+    background: #e0f7fa;
+  }
+
+  .tabla-ranking-retos tbody tr:nth-child(even),
+  .tabla-ranking-historico tbody tr:nth-child(even) {
+    background: #f5f5f5;
+  }
+
+  .tabla-ranking-retos tbody tr:nth-child(1),
+  .tabla-ranking-historico tbody tr:nth-child(1) {
+    background: #fff9c4;
+    font-weight: bold;
+  }
+
+  .tabla-ranking-retos tbody tr:nth-child(2),
+  .tabla-ranking-historico tbody tr:nth-child(2) {
+    background: #e1f5fe;
+  }
+
+  .tabla-ranking-retos tbody tr:nth-child(3),
+  .tabla-ranking-historico tbody tr:nth-child(3) {
+    background: #fce4ec;
+  }
+
+  .medalla {
+    font-size: 14pt;
+  }
+
+  /* Ocultar botones al imprimir */
+  button {
+    display: none !important;
+  }
+}

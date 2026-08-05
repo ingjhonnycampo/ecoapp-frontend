@@ -1,0 +1,122 @@
+/* Fondo oscuro centrado */
+.mm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55); /* más sutil */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  backdrop-filter: blur(6px);
+}
+
+/* Caja principal */
+.mm-box {
+  width: 92%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+  animation: mm-zoom-in 0.2s ease-out;
+}
+
+@keyframes mm-zoom-in {
+  from {
+    transform: scale(0.8) translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Encabezado por tipo */
+.mm-header {
+  padding: 32px 24px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.mm-exito {
+  background: linear-gradient(135deg, #27ae60, #1e8449);
+}
+
+.mm-error {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.mm-advertencia {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.mm-info {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+/* Ícono grande */
+.mm-icono {
+  font-size: 64px;
+  display: inline-block;
+}
+
+/* Cuerpo */
+.mm-body h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.mm-body p {
+  margin: 0;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+/* Footer / Botón */
+.mm-footer {
+  padding: 10px 26px 24px;
+  text-align: center;
+}
+
+.mm-btn {
+  min-width: 130px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #2563eb;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.mm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.45);
+  background: #1d4ed8;
+}
+
+.mm-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mm-box {
+    max-width: 95%;
+  }
+
+  .mm-body h3 {
+    font-size: 18px;
+  }
+
+  .mm-body p {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,643 @@
+/* ===== Layout general ===== */
+
+.gestion-pesaje-reto-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2rem;
+}
+
+/* Botón volver */
+
+.gestion-pesaje-reto-container .btn-volver {
+  margin-bottom: 0.75rem;
+}
+
+/* Header de sección */
+
+.gestion-pesaje-reto-container .seccion-header-centrado {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.gestion-pesaje-reto-container .seccion-header-inner-centrado {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.titulo-pesaje {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.seccion-descripcion {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* ===== Selector de unidad ===== */
+
+.unidad-selector {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.2rem 0 1.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #ecfdf5;
+  border-radius: 999px;
+}
+
+.unidad-selector span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #065f46;
+}
+
+.unidad-selector select {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #a7f3d0;
+  font-size: 0.8rem;
+  background: #ffffff;
+  color: #065f46;
+}
+
+/* Ajustes móvil para selector */
+
+@media (max-width: 480px) {
+  .unidad-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .unidad-selector span {
+    font-size: 0.78rem;
+  }
+
+  .unidad-selector select {
+    font-size: 0.78rem;
+  }
+}
+
+/* ===== Tabla de pesaje (card + responsive) ===== */
+
+.tabla-pesaje-salones {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+/* Contenedor para scroll horizontal en móviles */
+
+.tabla-pesaje-salones .tabla-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabla-pesaje-salones .tabla-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tabla-pesaje-salones .tabla-wrapper::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 999px;
+}
+
+.tabla-pesaje-salones .tabla-wrapper::-webkit-scrollbar-thumb {
+  background: #a7f3d0;
+  border-radius: 999px;
+}
+
+/* Tabla */
+
+.tabla-pesaje-salones table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header */
+
+.tabla-pesaje-salones thead {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.tabla-pesaje-salones thead th {
+  padding: 0.8rem 0.9rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* Filas */
+
+.tabla-pesaje-salones tbody tr {
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.tabla-pesaje-salones tbody tr:hover {
+  background: #ecfdf5;
+  transform: translateY(-1px);
+}
+
+/* Celdas */
+
+.tabla-pesaje-salones tbody td {
+  padding: 0.75rem 0.9rem;
+  font-size: 0.9rem;
+  color: #111827;
+  vertical-align: middle;
+}
+
+.tabla-pesaje-salones tbody td:nth-child(1),
+.tabla-pesaje-salones tbody td:nth-child(2) {
+  font-weight: 500;
+}
+
+/* Mensaje sin salones */
+
+.tabla-pesaje-salones tbody td[colspan] {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+  padding: 1rem;
+}
+
+/* ===== Inputs y botones dentro de la tabla ===== */
+
+.tabla-pesaje-salones input[type='number'] {
+  width: 100%;
+  max-width: 130px;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.85rem;
+  color: #111827;
+}
+
+.tabla-pesaje-salones input[type='number']::placeholder {
+  color: #9ca3af;
+}
+
+.tabla-pesaje-salones input[type='number']:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.3);
+}
+
+.tabla-pesaje-salones .btn-primario {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ===== Responsividad general ===== */
+
+@media (max-width: 768px) {
+  .gestion-pesaje-reto-container {
+    padding: 0.75rem 1rem 1.5rem;
+  }
+
+  .titulo-pesaje {
+    font-size: 1.15rem;
+  }
+
+  .seccion-descripcion {
+    font-size: 0.85rem;
+  }
+
+  .tabla-pesaje-salones thead th {
+    font-size: 0.75rem;
+    padding: 0.7rem 0.8rem;
+  }
+
+  .tabla-pesaje-salones tbody td {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gestion-pesaje-reto-container .btn-volver {
+    margin-bottom: 0.5rem;
+  }
+
+  .titulo-pesaje {
+    font-size: 1.05rem;
+  }
+
+  .seccion-descripcion {
+    font-size: 0.8rem;
+  }
+}
+
+/* Contenedor principal (ya lo puedes tener) */
+.gestion-pesaje-reto-container {
+  padding: 16px;
+}
+
+/* Selector de unidad (ya puedes tener algo similar) */
+.unidad-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+.unidad-selector select {
+  padding: 4px 8px;
+}
+
+/* Tabla (asumiendo que ya tenías un estilo base) */
+.tabla-pesaje-salones .tabla-wrapper {
+  overflow-x: auto;
+}
+
+.tabla-pesaje-salones table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-pesaje-salones th,
+.tabla-pesaje-salones td {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Botón primario genérico */
+.btn-primario {
+  background-color: #1976d2;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-primario:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+/* Botón volver (si ya lo tenías puedes ignorar) */
+.btn-volver {
+  margin-bottom: 12px;
+  background-color: transparent;
+  border: none;
+  color: #1976d2;
+  cursor: pointer;
+}
+
+/* === MODAL CONFIRMACIÓN PESO === */
+
+.modal-pesaje-backdrop {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-pesaje {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.modal-pesaje h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.modal-pesaje p {
+  margin-bottom: 8px;
+}
+
+.modal-pesaje-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.modal-pesaje-acciones button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-pesaje-acciones button:first-child {
+  background-color: #e5e5e5;
+  color: #333;
+}
+
+/* === MODAL DE ÉXITO === */
+
+.modal-exito-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000; /* por encima del modal de confirmación */
+}
+
+.modal-exito {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 18px 22px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.modal-exito h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #1b7c3a; /* tono de éxito */
+}
+
+.modal-exito p {
+  margin-bottom: 12px;
+}
+
+.modal-exito-acciones {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-exito-acciones .btn-primario {
+  padding: 6px 14px;
+}
+
+/* === MODAL CONFIRMACIÓN PESO === */
+
+.modal-pesaje-backdrop {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-pesaje {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 22px 24px 20px;
+  max-width: 460px;
+  width: 90%;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.modal-pesaje-icono {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.modal-pesaje-icono-warning {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+}
+
+.modal-pesaje h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.modal-pesaje p {
+  margin-bottom: 8px;
+}
+
+.modal-pesaje-subtexto {
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+.modal-pesaje-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.modal-pesaje-acciones button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-pesaje-acciones button:first-child {
+  background-color: #e5e5e5;
+  color: #333;
+}
+
+/* === MODAL DE ÉXITO === */
+
+.modal-exito-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000; /* por encima del modal de confirmación */
+}
+
+.modal-exito {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px 22px 18px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.modal-exito-icono {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.modal-exito h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #2e7d32;
+}
+
+.modal-exito p {
+  margin-bottom: 12px;
+}
+
+.modal-exito-acciones {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-exito-acciones .btn-primario {
+  padding: 6px 14px;
+}
+
+/* Colores de fila según tenga peso o no */
+.fila-salon-verde {
+  background-color: #e6f6e9;
+}
+
+.fila-salon-roja {
+  background-color: #fdeaea;
+}
+
+/* Posición + medalla en la misma celda */
+.celda-posicion {
+  text-align: center;        /* centramos horizontalmente el contenido */
+  vertical-align: middle;    /* alineado vertical como el resto de celdas */
+}
+
+.celda-posicion-content {
+  display: inline-flex;      /* flex solo dentro, no en el td */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.posicion-numero {
+  font-weight: 600;
+}
+
+.medalla-icono {
+  font-size: 1.1rem;
+}
+
+.celda-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.btn-secundario {
+  background-color: #ffffff;
+  border: 1px solid #888;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secundario:hover {
+  background-color: #f2f2f2;
+}
+
+/* Modal historial */
+.modal-historial-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.modal-historial {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-historial h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.tabla-historial-wrapper {
+  max-height: 50vh;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+.tabla-historial {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-historial th,
+.tabla-historial td {
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}
+
+.tabla-historial th {
+  background-color: #f5f5f5;
+}
+
+.modal-historial-acciones {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.celda-acciones {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icono-historial {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.btn-icono-historial:hover {
+  transform: scale(1.1);
+}
