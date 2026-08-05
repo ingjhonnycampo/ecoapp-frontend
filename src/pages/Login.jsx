@@ -3,6 +3,9 @@ import { AuthContext } from '../context/AuthContext';
 import Registro from './Registro';
 import './Login.css';
 
+// ✅ Agregamos esto al inicio
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,6 +19,7 @@ function Login() {
     const { login } = useContext(AuthContext);
     const formRef = useRef(null);
     const formRecuperarRef = useRef(null);
+
 
     // Prevenir submit del formulario a nivel DOM
     useEffect(() => {
@@ -31,6 +35,7 @@ function Login() {
         }
     }, []);
 
+
     useEffect(() => {
         const form = formRecuperarRef.current;
         if (form) {
@@ -44,21 +49,26 @@ function Login() {
         }
     }, [mostrarRecuperar]);
 
+
     const handleSubmit = async () => {
         setError('');
         setMensajeExito('');
+
 
         if (!email.trim()) {
             setError('El email es obligatorio');
             return;
         }
 
+
         if (!password) {
             setError('La contraseña es obligatoria');
             return;
         }
 
+
         setLoading(true);
+
 
         const result = await login(email, password);
         
@@ -69,24 +79,30 @@ function Login() {
         setLoading(false);
     };
 
+
     const handleRecuperarPassword = async () => {
         setError('');
         setMensajeExito('');
+
 
         if (!emailRecuperar.trim()) {
             setError('Ingresa tu email para recuperar la contraseña');
             return;
         }
 
+
         if (!/\S+@\S+\.\S+/.test(emailRecuperar)) {
             setError('Email inválido');
             return;
         }
 
+
         setLoading(true);
 
+
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/recuperar_password.php`, {
+            // ✅ Usamos BASE_URL en lugar de import.meta.env directo
+            const response = await fetch(`${BASE_URL}/recuperar_password.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -94,7 +110,9 @@ function Login() {
                 body: JSON.stringify({ email: emailRecuperar })
             });
 
+
             const data = await response.json();
+
 
             if (data.success) {
                 setMensajeExito(data.message);
@@ -113,6 +131,7 @@ function Login() {
         }
     };
 
+
     if (mostrarRecuperar) {
         return (
             <div className="login-container">
@@ -124,6 +143,7 @@ function Login() {
                         </h1>
                         <p className="subtitulo">Te enviaremos tu contraseña por email</p>
                     </div>
+
 
                     <form ref={formRecuperarRef} className="login-form" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
                         <div className="form-group">
@@ -147,8 +167,10 @@ function Login() {
                             />
                         </div>
 
+
                         {error && <div className="error-message">❌ {error}</div>}
                         {mensajeExito && <div className="success-message">✅ {mensajeExito}</div>}
+
 
                         <button 
                             type="button"
@@ -158,6 +180,7 @@ function Login() {
                         >
                             {loading ? '⏳ Enviando...' : '📧 Enviar Contraseña'}
                         </button>
+
 
                         <button 
                             type="button" 
@@ -175,6 +198,7 @@ function Login() {
                     </form>
                 </div>
 
+
                 <footer className="login-footer-bottom">
                     <p>© 2026 EcoApp Escolar - Todos los derechos reservados</p>
                     <p>Diseñado por <strong>Ing. Jhonny Campo Herrera</strong></p>
@@ -182,6 +206,7 @@ function Login() {
             </div>
         );
     }
+
 
     if (mostrarRegistro) {
         return (
@@ -203,6 +228,7 @@ function Login() {
             </div>
         );
     }
+
 
     return (
         <div className="login-container">
@@ -236,6 +262,7 @@ function Login() {
                             autoComplete="off"
                         />
                     </div>
+
 
                     <div className="form-group">
                         <label>🔒 Contraseña</label>
@@ -277,7 +304,9 @@ function Login() {
                         </button>
                     </div>
 
+
                     {error && <div className="error-message">❌ {error}</div>}
+
 
                     <button 
                         type="button"
@@ -289,9 +318,11 @@ function Login() {
                     </button>
                 </form>
 
+
                 <div className="divider">
                     <span>o</span>
                 </div>
+
 
                 <button 
                     type="button" 
@@ -303,6 +334,7 @@ function Login() {
                 </button>
             </div>
 
+
             <footer className="login-footer-bottom">
                 <p>© 2026 EcoApp Escolar - Todos los derechos reservados</p>
                 <p>Diseñado por <strong>Ing. Jhonny Campo Herrera</strong></p>
@@ -310,5 +342,6 @@ function Login() {
         </div>
     );
 }
+
 
 export default Login;
