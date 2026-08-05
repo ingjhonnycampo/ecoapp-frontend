@@ -86,7 +86,7 @@ function Login() {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost/reciclaje-app/backend/api/recuperar_password.php', {
+            const response = await fetch('${import.meta.env.VITE_API_BASE_URL}/recuperar_password.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

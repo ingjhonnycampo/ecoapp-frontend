@@ -55,7 +55,7 @@ function UsuariosGlobal() {
       }
 
       const res = await fetch(
-        "http://localhost/reciclaje-app/backend/api/usuarios.php",
+        "${import.meta.env.VITE_API_BASE_URL}/usuarios.php",
         {
           headers: {
             Authorization: `Bearer ${tokenActual}`,
@@ -98,7 +98,7 @@ function UsuariosGlobal() {
       try {
         setLoadingColegios(true);
         const res = await fetch(
-          "http://localhost/reciclaje-app/backend/api/colegios_publicos.php"
+          "${import.meta.env.VITE_API_BASE_URL}/colegios_publicos.php"
         );
         const data = await res.json();
         if (data.success) {
@@ -125,7 +125,7 @@ function UsuariosGlobal() {
         try {
           setLoadingGrados(true);
           const res = await fetch(
-            `http://localhost/reciclaje-app/backend/api/grados_select.php?colegio_id=${colegio_id}`
+            `${import.meta.env.VITE_API_BASE_URL}/grados_select.php?colegio_id=${colegio_id}`
           );
           const data = await res.json();
           if (data.success) {
@@ -160,7 +160,7 @@ function UsuariosGlobal() {
         try {
           setLoadingSalones(true);
           const res = await fetch(
-            `http://localhost/reciclaje-app/backend/api/salones_select.php?colegio_id=${colegio_id}&grado_id=${grado_id}`
+            `${import.meta.env.VITE_API_BASE_URL}/salones_select.php?colegio_id=${colegio_id}&grado_id=${grado_id}`
           );
           const data = await res.json();
           if (data.success) {
@@ -416,7 +416,7 @@ const cerrarModalMensaje = () => {
       if (!modoEdicion) {
         // Crear usuario desde administración (3 roles)
         res = await fetch(
-          "http://localhost/reciclaje-app/backend/api/usuarios_create.php",
+          "${import.meta.env.VITE_API_BASE_URL}/usuarios_create.php",
           {
             method: "POST",
             headers: {
@@ -432,7 +432,7 @@ const cerrarModalMensaje = () => {
       } else {
         // Actualizar usuario
         res = await fetch(
-          `http://localhost/reciclaje-app/backend/api/usuarios.php?id=${formData.id}`,
+          `${import.meta.env.VITE_API_BASE_URL}/usuarios.php?id=${formData.id}`,
           {
             method: "PUT",
             headers: {
@@ -537,7 +537,7 @@ abrirModalMensaje(
 
   try {
     const res = await fetch(
-      `http://localhost/reciclaje-app/backend/api/usuarios.php?id=${usuarioSel.id}`,
+      `${import.meta.env.VITE_API_BASE_URL}/usuarios.php?id=${usuarioSel.id}`,
       {
         method: "DELETE",
         headers: {
@@ -577,7 +577,7 @@ abrirModalMensaje(
 const activarUsuario = async (usuarioSel) => {
   try {
     const res = await fetch(
-      `http://localhost/reciclaje-app/backend/api/usuarios.php?id=${usuarioSel.id}`,
+      `${import.meta.env.VITE_API_BASE_URL}/usuarios.php?id=${usuarioSel.id}`,
       {
         method: "PUT",
         headers: {

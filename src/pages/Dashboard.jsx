@@ -30,7 +30,7 @@ function Dashboard() {
   const cargarTotalColegios = async () => {
     try {
       const response = await fetch(
-        'http://localhost/reciclaje-app/backend/api/contar_colegios.php'
+        '${import.meta.env.VITE_API_BASE_URL}/contar_colegios.php'
       );
       const data = await response.json();
 
@@ -57,7 +57,7 @@ const cargarRankingColegio = async () => {
     }
 
     const response = await fetch(
-      `http://localhost/reciclaje-app/backend/api/ranking_historico_colegio.php?colegio_id=${usuario.colegio_id}`,
+      `${import.meta.env.VITE_API_BASE_URL}/ranking_historico_colegio.php?colegio_id=${usuario.colegio_id}`,
       {
         method: 'GET',
         headers: {
@@ -93,7 +93,7 @@ const toggleRanking = () => {
   const cargarTotalUsuarios = async () => {
     try {
       const response = await fetch(
-        'http://localhost/reciclaje-app/backend/api/contar_usuarios.php'
+        '${import.meta.env.VITE_API_BASE_URL}/contar_usuarios.php'
       );
       const data = await response.json();
 
@@ -115,7 +115,7 @@ const toggleRanking = () => {
     const token = localStorage.getItem('token');
 
     const response = await fetch(
-      'http://localhost/reciclaje-app/backend/api/dashboard_curso_estudiante.php',
+      '${import.meta.env.VITE_API_BASE_URL}/dashboard_curso_estudiante.php',
       {
         method: 'GET',
         headers: {
@@ -194,7 +194,7 @@ useEffect(() => {
       setLoadingGlobal(true);
 
       const response = await fetch(
-        'http://localhost/reciclaje-app/backend/api/estadisticas_globales.php'
+        '${import.meta.env.VITE_API_BASE_URL}/estadisticas_globales.php'
       );
       const data = await response.json();
 

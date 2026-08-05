@@ -31,9 +31,9 @@ function ReportesGlobales() {
         setErrorGlobal("");
 
         const [resColegios, resUsuarios, resGlobal] = await Promise.all([
-          fetch("http://localhost/reciclaje-app/backend/api/contar_colegios.php"),
-          fetch("http://localhost/reciclaje-app/backend/api/contar_usuarios.php"),
-          fetch("http://localhost/reciclaje-app/backend/api/estadisticas_globales.php"),
+          fetch("${import.meta.env.VITE_API_BASE_URL}/contar_colegios.php"),
+          fetch("${import.meta.env.VITE_API_BASE_URL}/contar_usuarios.php"),
+          fetch("${import.meta.env.VITE_API_BASE_URL}/estadisticas_globales.php"),
         ]);
 
         const dataColegios = await resColegios.json();

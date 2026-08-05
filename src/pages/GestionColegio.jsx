@@ -432,7 +432,7 @@ ventana.document.close();
       setColegio(colegioEncontrado);
 
       const responseStats = await fetch(
-        `http://localhost/reciclaje-app/backend/api/estadisticas_colegio.php?colegio_id=${colegioId}`
+        `${import.meta.env.VITE_API_BASE_URL}/estadisticas_colegio.php?colegio_id=${colegioId}`
       );
       const dataStats = await responseStats.json();
 
@@ -451,7 +451,7 @@ ventana.document.close();
   const cargarUsuarios = async () => {
     try {
       const response = await fetch(
-        `http://localhost/reciclaje-app/backend/api/usuarios_colegio.php?colegio_id=${colegioId}`
+        `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php?colegio_id=${colegioId}`
       );
       const data = await response.json();
 
@@ -514,7 +514,7 @@ ventana.document.close();
   const desactivarUsuario = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost/reciclaje-app/backend/api/usuarios_colegio.php?id=${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php?id=${id}`,
         {
           method: 'DELETE',
         }
@@ -533,7 +533,7 @@ ventana.document.close();
   const activarUsuario = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost/reciclaje-app/backend/api/usuarios_colegio.php`,
+        `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php`,
         {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },

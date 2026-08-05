@@ -34,7 +34,7 @@ import RankingColegio from './RankingColegio';
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          `http://localhost/reciclaje-app/backend/api/ranking_historico_colegio.php?colegio_id=${usuario.colegio_id}`,
+          `${import.meta.env.VITE_API_BASE_URL}/ranking_historico_colegio.php?colegio_id=${usuario.colegio_id}`,
           {
             method: 'GET',
             headers: {

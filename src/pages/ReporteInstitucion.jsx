@@ -79,7 +79,7 @@ function ReporteInstitucion() {
 
         // Reutilizamos el endpoint global de estadísticas mensuales por colegio
         const res = await fetch(
-          "http://localhost/reciclaje-app/backend/api/estadisticas_mensuales_colegios.php"
+          "${import.meta.env.VITE_API_BASE_URL}/estadisticas_mensuales_colegios.php"
         );
         const data = await res.json();
 

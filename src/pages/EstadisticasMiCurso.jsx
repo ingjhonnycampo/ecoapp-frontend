@@ -26,7 +26,7 @@ function EstadisticasMiCurso() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost/reciclaje-app/backend/api/estadisticas_curso_por_reto.php',
+          '${import.meta.env.VITE_API_BASE_URL}/estadisticas_curso_por_reto.php',
           {
             method: 'GET',
             headers: {

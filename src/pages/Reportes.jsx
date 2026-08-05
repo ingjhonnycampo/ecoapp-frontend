@@ -107,19 +107,19 @@ function Reportes() {
           resMensualesPorColegio,
         ] = await Promise.all([
           fetch(
-            "http://localhost/reciclaje-app/backend/api/contar_colegios.php"
+            "${import.meta.env.VITE_API_BASE_URL}/contar_colegios.php"
           ),
           fetch(
-            "http://localhost/reciclaje-app/backend/api/contar_usuarios.php"
+            "${import.meta.env.VITE_API_BASE_URL}/contar_usuarios.php"
           ),
           fetch(
-            "http://localhost/reciclaje-app/backend/api/estadisticas_globales.php"
+            "${import.meta.env.VITE_API_BASE_URL}/estadisticas_globales.php"
           ),
           fetch(
-            "http://localhost/reciclaje-app/backend/api/estadisticas_mensuales.php"
+            "${import.meta.env.VITE_API_BASE_URL}/estadisticas_mensuales.php"
           ),
           fetch(
-            "http://localhost/reciclaje-app/backend/api/estadisticas_mensuales_colegios.php"
+            "${import.meta.env.VITE_API_BASE_URL}/estadisticas_mensuales_colegios.php"
           ),
         ]);
 

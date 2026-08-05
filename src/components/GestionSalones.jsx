@@ -28,7 +28,7 @@ function GestionSalones({ colegioId, colegioNombre }) {
 
     const cargarGrados = async () => {
         try {
-            const response = await fetch(`http://localhost/reciclaje-app/backend/api/grados_estandar.php`);
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/grados_estandar.php`);
             const data = await response.json();
             if (data.success) {
                 setGrados(data.data);
@@ -42,7 +42,7 @@ function GestionSalones({ colegioId, colegioNombre }) {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost/reciclaje-app/backend/api/salones.php?colegio_id=${colegioId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones.php?colegio_id=${colegioId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -91,8 +91,8 @@ function GestionSalones({ colegioId, colegioNombre }) {
 
         const token = localStorage.getItem('token');
         const url = modoEdicion 
-            ? `http://localhost/reciclaje-app/backend/api/salones.php?id=${salonSeleccionado.id}`
-            : 'http://localhost/reciclaje-app/backend/api/salones.php';
+            ? `${import.meta.env.VITE_API_BASE_URL}/salones.php?id=${salonSeleccionado.id}`
+            : '${import.meta.env.VITE_API_BASE_URL}/salones.php';
         const method = modoEdicion ? 'PUT' : 'POST';
 
         const dataToSend = {
@@ -141,7 +141,7 @@ function GestionSalones({ colegioId, colegioNombre }) {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch(`http://localhost/reciclaje-app/backend/api/salones.php?id=${salon.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones.php?id=${salon.id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ function GestionSalones({ colegioId, colegioNombre }) {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch(`http://localhost/reciclaje-app/backend/api/salones.php?id=${salon.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones.php?id=${salon.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

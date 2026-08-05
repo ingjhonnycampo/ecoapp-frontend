@@ -43,7 +43,7 @@ function MiPerfil() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost/reciclaje-app/backend/api/perfil_estudiante.php',
+          '${import.meta.env.VITE_API_BASE_URL}/perfil_estudiante.php',
           {
             method: 'GET',
             headers: {
@@ -81,7 +81,7 @@ function MiPerfil() {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost/reciclaje-app/backend/api/actualizar_perfil_estudiante.php',
+        '${import.meta.env.VITE_API_BASE_URL}/actualizar_perfil_estudiante.php',
         {
           method: 'POST',
           headers: {
@@ -100,7 +100,7 @@ function MiPerfil() {
         // Recargar perfil
         const token2 = localStorage.getItem('token');
         const res2 = await fetch(
-          'http://localhost/reciclaje-app/backend/api/perfil_estudiante.php',
+          '${import.meta.env.VITE_API_BASE_URL}/perfil_estudiante.php',
           {
             method: 'GET',
             headers: {
@@ -135,7 +135,7 @@ function MiPerfil() {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost/reciclaje-app/backend/api/cambiar_contrasena_estudiante.php',
+        '${import.meta.env.VITE_API_BASE_URL}/cambiar_contrasena_estudiante.php',
         {
           method: 'POST',
           headers: {

@@ -45,7 +45,7 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
 
     const cargarGrados = async () => {
         try {
-            const response = await fetch(`http://localhost/reciclaje-app/backend/api/grados_select.php?colegio_id=${colegioId}`);
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/grados_select.php?colegio_id=${colegioId}`);
             const data = await response.json();
             
             if (data.success) {
@@ -58,7 +58,7 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
 
     const cargarSalones = async (gradoId) => {
         try {
-            const response = await fetch(`http://localhost/reciclaje-app/backend/api/salones_select.php?colegio_id=${colegioId}&grado_id=${gradoId}`);
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones_select.php?colegio_id=${colegioId}&grado_id=${gradoId}`);
             const data = await response.json();
             
             if (data.success) {
@@ -92,7 +92,7 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
         setLoading(true);
 
         try {
-            const url = 'http://localhost/reciclaje-app/backend/api/usuarios_colegio.php';
+            const url = '${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php';
             const method = modo === 'crear' ? 'POST' : 'PUT';
             
             const dataToSend = {
