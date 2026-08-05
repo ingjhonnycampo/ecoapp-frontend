@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './ModalUsuario.css';
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function ModalCambiarPassword({ usuario, onCerrar }) {
     const [password, setPassword] = useState('');
     const [confirmarPassword, setConfirmarPassword] = useState('');
@@ -25,7 +27,7 @@ function ModalCambiarPassword({ usuario, onCerrar }) {
         setLoading(true);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php', {
+            const response = await fetch(`${BASE_URL}/usuarios_colegio.php`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

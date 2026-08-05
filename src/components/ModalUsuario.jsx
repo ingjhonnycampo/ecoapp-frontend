@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './ModalUsuario.css';
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstudiantes = false }) {
     const [formData, setFormData] = useState({
         nombre: '',
@@ -16,12 +18,11 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
     const [error, setError] = useState('');
     const [exito, setExito] = useState(false);
 
-    // Cargar grados al abrir el modal
     useEffect(() => {
         if (colegioId) {
             cargarGrados();
         }
-        
+
         if (modo === 'editar' && usuario) {
             setFormData({
                 nombre: usuario.nombre,
@@ -34,7 +35,6 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
         }
     }, [usuario, modo, colegioId]);
 
-    // Cargar salones cuando cambia el grado
     useEffect(() => {
         if (formData.grado_id && colegioId) {
             cargarSalones(formData.grado_id);
@@ -45,9 +45,9 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
 
     const cargarGrados = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/grados_select.php?colegio_id=${colegioId}`);
+            const response = await fetch(`${BASE_URL}/grados_select.php?colegio_id=${colegioId}`);
             const data = await response.json();
-            
+
             if (data.success) {
                 setGrados(data.data);
             }
@@ -58,9 +58,9 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
 
     const cargarSalones = async (gradoId) => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones_select.php?colegio_id=${colegioId}&grado_id=${gradoId}`);
+            const response = await fetch(`${BASE_URL}/salones_select.php?colegio_id=${colegioId}&grado_id=${gradoId}`);
             const data = await response.json();
-            
+
             if (data.success) {
                 setSalones(data.data);
             }
@@ -82,7 +82,7 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
         setFormData(prev => ({
             ...prev,
             grado_id: value,
-            salon_id: '' // Limpiar salón cuando cambia el grado
+            salon_id: ''
         }));
     };
 
@@ -92,15 +92,14 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
         setLoading(true);
 
         try {
-            const url = `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php';
+            const url = `${BASE_URL}/usuarios_colegio.php`;
             const method = modo === 'crear' ? 'POST' : 'PUT';
-            
+
             const dataToSend = {
                 ...formData,
                 colegio_id: colegioId
             };
 
-            // Si es coordinador, no enviar grado_id ni salon_id
             if (formData.rol === 'coordinador') {
                 delete dataToSend.grado_id;
                 delete dataToSend.salon_id;
@@ -108,7 +107,6 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
 
             if (modo === 'editar') {
                 dataToSend.id = usuario.id;
-                // No enviar password si está vacío en edición
                 if (!formData.password) {
                     delete dataToSend.password;
                 }
@@ -157,7 +155,7 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
                         <div className="exito-icon">✅</div>
                         <h3>{modo === 'crear' ? 'Usuario creado' : 'Usuario actualizado'}</h3>
                         <p>
-                            {modo === 'crear' 
+                            {modo === 'crear'
                                 ? `${formData.nombre} ha sido registrado exitosamente.`
                                 : `Los datos de ${formData.nombre} han sido actualizados.`
                             }
@@ -235,7 +233,6 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
 
                         {formData.rol === 'estudiante' && (
                             <>
-                                {/* SELECT DE GRADO */}
                                 <div className="form-group">
                                     <label htmlFor="grado_id">
                                         <i className="fas fa-layer-group"></i> Grado *
@@ -257,7 +254,6 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
                                     </select>
                                 </div>
 
-                                {/* SELECT DE SALÓN (solo si hay grado seleccionado) */}
                                 {formData.grado_id && (
                                     <div className="form-group">
                                         <label htmlFor="salon_id">
@@ -288,14 +284,3 @@ function ModalUsuario({ usuario, modo, colegioId, onCerrar, onGuardar, soloEstud
                                 Cancelar
                             </button>
                             <button type="submit" className="btn-guardar" disabled={loading}>
-                                {loading ? 'Guardando...' : 'Guardar'}
-                            </button>
-                        </div>
-                    </form>
-                )}
-            </div>
-        </div>
-    );
-}
-
-export default ModalUsuario;
