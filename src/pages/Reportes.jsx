@@ -14,6 +14,9 @@ import {
   LabelList,
 } from "recharts";
 
+// ✅ Agrega esto
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const mapaMeses = {
   "01": "Enero",
   "02": "Febrero",
@@ -106,21 +109,11 @@ function Reportes() {
           resMensuales,
           resMensualesPorColegio,
         ] = await Promise.all([
-          fetch(
-            "${import.meta.env.VITE_API_BASE_URL}/contar_colegios.php"
-          ),
-          fetch(
-            "${import.meta.env.VITE_API_BASE_URL}/contar_usuarios.php"
-          ),
-          fetch(
-            "${import.meta.env.VITE_API_BASE_URL}/estadisticas_globales.php"
-          ),
-          fetch(
-            "${import.meta.env.VITE_API_BASE_URL}/estadisticas_mensuales.php"
-          ),
-          fetch(
-            "${import.meta.env.VITE_API_BASE_URL}/estadisticas_mensuales_colegios.php"
-          ),
+          fetch(`${BASE_URL}/contar_colegios.php`),
+          fetch(`${BASE_URL}/contar_usuarios.php`),
+          fetch(`${BASE_URL}/estadisticas_globales.php`),
+          fetch(`${BASE_URL}/estadisticas_mensuales.php`),
+          fetch(`${BASE_URL}/estadisticas_mensuales_colegios.php`),
         ]);
 
         const dataColegios = await resColegios.json();
@@ -252,110 +245,110 @@ function Reportes() {
   const colores = ["#4caf50", "#2196f3", "#ff9800", "#9c27b0", "#00bcd4"];
 
   const imprimirDesempenoMensual = () => {
-  const contenido = document.getElementById("seccion-desempeno-mensual");
-  if (!contenido) {
-    window.print();
-    return;
-  }
+    const contenido = document.getElementById("seccion-desempeno-mensual");
+    if (!contenido) {
+      window.print();
+      return;
+    }
 
-  const ventana = window.open("", "_blank", "width=800,height=600");
-  ventana.document.write("<html><head><title>Desempeño mensual</title>");
+    const ventana = window.open("", "_blank", "width=800,height=600");
+    ventana.document.write("<html><head><title>Desempeño mensual</title>");
 
-  ventana.document.write(`
-    <style>
-      body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        margin: 0;
-        padding: 1rem;
-      }
+    ventana.document.write(`
+      <style>
+        body {
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          margin: 0;
+          padding: 1rem;
+        }
 
-      /* Contenedor principal con marca de agua del logo */
-      #seccion-desempeno-mensual {
-        margin: 0 auto;
-        max-width: 800px;
-        position: relative;
-        background-image: url("/imagen.png");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 60%;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
+        /* Contenedor principal con marca de agua del logo */
+        #seccion-desempeno-mensual {
+          margin: 0 auto;
+          max-width: 800px;
+          position: relative;
+          background-image: url("/imagen.png");
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 60%;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
 
-      /* Ocultar el logo como imagen normal en la impresión */
-      .reportes-logo {
-        display: none !important;
-      }
+        /* Ocultar el logo como imagen normal en la impresión */
+        .reportes-logo {
+          display: none !important;
+        }
 
-      #seccion-desempeno-mensual h2,
-      #seccion-desempeno-mensual .section-subtitle {
-        text-align: center;
-      }
+        #seccion-desempeno-mensual h2,
+        #seccion-desempeno-mensual .section-subtitle {
+          text-align: center;
+        }
 
-      .reportes-tabla {
-        margin: 1rem auto;
-        width: 90%;
-        border-collapse: collapse;
-        font-size: 0.9rem;
-      }
-      .reportes-tabla thead {
-        background-color: #f3f4f6;
-      }
-      .reportes-tabla th,
-      .reportes-tabla td {
-        border: 1px solid #e5e7eb;
-        padding: 0.5rem 0.75rem;
-        text-align: center;
-      }
-      .reportes-tabla th {
-        font-weight: 600;
-        color: #374151;
-      }
-      .reportes-tabla tbody tr:nth-child(even) {
-        background-color: #f9fafb;
-      }
+        .reportes-tabla {
+          margin: 1rem auto;
+          width: 90%;
+          border-collapse: collapse;
+          font-size: 0.9rem;
+        }
+        .reportes-tabla thead {
+          background-color: #f3f4f6;
+        }
+        .reportes-tabla th,
+        .reportes-tabla td {
+          border: 1px solid #e5e7eb;
+          padding: 0.5rem 0.75rem;
+          text-align: center;
+        }
+        .reportes-tabla th {
+          font-weight: 600;
+          color: #374151;
+        }
+        .reportes-tabla tbody tr:nth-child(even) {
+          background-color: #f9fafb;
+        }
 
-      .leyenda-instituciones {
-        margin-top: 0.75rem;
-        font-size: 0.8rem;
-      }
-      .leyenda-instituciones ul {
-        list-style: none;
-        padding: 0;
-        margin: 0.25rem 0 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem 1rem;
-        justify-content: center;
-      }
-      .leyenda-color {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin-right: 0.35rem;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
+        .leyenda-instituciones {
+          margin-top: 0.75rem;
+          font-size: 0.8rem;
+        }
+        .leyenda-instituciones ul {
+          list-style: none;
+          padding: 0;
+          margin: 0.25rem 0 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem 1rem;
+          justify-content: center;
+        }
+        .leyenda-color {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          margin-right: 0.35rem;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
 
-      .grafico-mensual-instituciones h3 {
-        text-align: center;
-      }
+        .grafico-mensual-instituciones h3 {
+          text-align: center;
+        }
 
-      .no-print {
-        display: none !important;
-      }
-    </style>
-  `);
+        .no-print {
+          display: none !important;
+        }
+      </style>
+    `);
 
-  ventana.document.write("</head><body>");
-  ventana.document.write(contenido.innerHTML);
-  ventana.document.write("</body></html>");
-  ventana.document.close();
-  ventana.focus();
-  ventana.print();
-  ventana.close();
-};
+    ventana.document.write("</head><body>");
+    ventana.document.write(contenido.innerHTML);
+    ventana.document.write("</body></html>");
+    ventana.document.close();
+    ventana.focus();
+    ventana.print();
+    ventana.close();
+  };
 
   return (
     <div className="reportes-page">
@@ -482,18 +475,18 @@ function Reportes() {
       >
         <div className="reportes-card-header">
           <div className="reportes-card-title">
-  <img
-    src="/imagen.png"
-    alt="Logo reciclaje"
-    className="reportes-logo"
-  />
-  <div>
-    <h2>📅 Desempeño mensual global</h2>
-    <p className="section-subtitle">
-      Kilos reciclados por mes y por institución.
-    </p>
-  </div>
-</div>
+            <img
+              src="/imagen.png"
+              alt="Logo reciclaje"
+              className="reportes-logo"
+            />
+            <div>
+              <h2>📅 Desempeño mensual global</h2>
+              <p className="section-subtitle">
+                Kilos reciclados por mes y por institución.
+              </p>
+            </div>
+          </div>
 
           <div className="reportes-card-actions no-print">
             {añosDisponibles.length > 0 && (

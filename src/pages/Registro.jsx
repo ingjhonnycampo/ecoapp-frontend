@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import './Registro.css';
 
+// ✅ Agrega esto
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function Registro({ onVolver }) {
     const [colegios, setColegios] = useState([]);
     const [grados, setGrados] = useState([]);
@@ -18,9 +21,11 @@ function Registro({ onVolver }) {
     const [loading, setLoading] = useState(false);
     const [mostrarModalExito, setMostrarModalExito] = useState(false);
 
+
     useEffect(() => {
         cargarColegios();
     }, []);
+
 
     useEffect(() => {
         if (formData.colegio_id) {
@@ -32,6 +37,7 @@ function Registro({ onVolver }) {
         }
     }, [formData.colegio_id]);
 
+
     useEffect(() => {
         if (formData.grado_id && formData.colegio_id) {
             cargarSalones(formData.colegio_id, formData.grado_id);
@@ -41,9 +47,10 @@ function Registro({ onVolver }) {
         }
     }, [formData.grado_id, formData.colegio_id]);
 
+
     const cargarColegios = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/colegios_publicos.php');
+            const response = await fetch(`${BASE_URL}/colegios_publicos.php`);
             const data = await response.json();
             if (data.success) {
                 setColegios(data.data);
@@ -53,9 +60,10 @@ function Registro({ onVolver }) {
         }
     };
 
+
     const cargarGrados = async (colegioId) => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/grados_select.php?colegio_id=${colegioId}`);
+            const response = await fetch(`${BASE_URL}/grados_select.php?colegio_id=${colegioId}`);
             const data = await response.json();
             if (data.success) {
                 setGrados(data.data);
@@ -65,9 +73,10 @@ function Registro({ onVolver }) {
         }
     };
 
+
     const cargarSalones = async (colegioId, gradoId) => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones_select.php?colegio_id=${colegioId}&grado_id=${gradoId}`);
+            const response = await fetch(`${BASE_URL}/salones_select.php?colegio_id=${colegioId}&grado_id=${gradoId}`);
             const data = await response.json();
             if (data.success) {
                 setSalones(data.data);
@@ -77,12 +86,15 @@ function Registro({ onVolver }) {
         }
     };
 
+
     const validarFormulario = () => {
         const newErrors = {};
+
 
         if (!formData.nombre.trim()) {
             newErrors.nombre = 'El nombre es obligatorio';
         }
+
 
         if (!formData.email.trim()) {
             newErrors.email = 'El email es obligatorio';
@@ -90,31 +102,38 @@ function Registro({ onVolver }) {
             newErrors.email = 'Email inválido';
         }
 
+
         if (!formData.password) {
             newErrors.password = 'La contraseña es obligatoria';
         } else if (formData.password.length < 6) {
             newErrors.password = 'La contraseña debe tener mínimo 6 caracteres';
         }
 
+
         if (formData.password !== formData.confirmPassword) {
             newErrors.confirmPassword = 'Las contraseñas no coinciden';
         }
+
 
         if (!formData.colegio_id) {
             newErrors.colegio_id = 'Selecciona tu institución';
         }
 
+
         if (!formData.grado_id) {
             newErrors.grado_id = 'Selecciona tu grado';
         }
+
 
         if (!formData.salon_id) {
             newErrors.salon_id = 'Selecciona tu salón';
         }
 
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -123,10 +142,12 @@ function Registro({ onVolver }) {
             return;
         }
 
+
         setLoading(true);
 
+
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/registro_estudiante.php', {
+            const response = await fetch(`${BASE_URL}/registro_estudiante.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -141,7 +162,9 @@ function Registro({ onVolver }) {
                 })
             });
 
+
             const data = await response.json();
+
 
             if (data.success) {
                 setMostrarModalExito(true);
@@ -159,6 +182,7 @@ function Registro({ onVolver }) {
         }
     };
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -173,6 +197,7 @@ function Registro({ onVolver }) {
             });
         }
     };
+
 
     const handleGradoChange = (e) => {
         const { value } = e.target;
@@ -189,6 +214,7 @@ function Registro({ onVolver }) {
             });
         }
     };
+
 
     return (
         <>
@@ -208,6 +234,7 @@ function Registro({ onVolver }) {
                         {errors.nombre && <span className="error-text">{errors.nombre}</span>}
                     </div>
 
+
                     <div className="form-group">
                         <label>Email *</label>
                         <input
@@ -220,6 +247,7 @@ function Registro({ onVolver }) {
                         />
                         {errors.email && <span className="error-text">{errors.email}</span>}
                     </div>
+
 
                     <div className="form-group">
                         <label>Contraseña *</label>
@@ -234,6 +262,7 @@ function Registro({ onVolver }) {
                         {errors.password && <span className="error-text">{errors.password}</span>}
                     </div>
 
+
                     <div className="form-group">
                         <label>Confirmar Contraseña *</label>
                         <input
@@ -246,6 +275,7 @@ function Registro({ onVolver }) {
                         />
                         {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
                     </div>
+
 
                     <div className="form-group">
                         <label>Institución Educativa *</label>
@@ -264,6 +294,7 @@ function Registro({ onVolver }) {
                         </select>
                         {errors.colegio_id && <span className="error-text">{errors.colegio_id}</span>}
                     </div>
+
 
                     <div className="form-row">
                         <div className="form-group">
@@ -284,6 +315,7 @@ function Registro({ onVolver }) {
                             {errors.grado_id && <span className="error-text">{errors.grado_id}</span>}
                         </div>
 
+
                         <div className="form-group">
                             <label>Salón *</label>
                             <select
@@ -303,17 +335,21 @@ function Registro({ onVolver }) {
                         </div>
                     </div>
 
+
                     {errors.general && <div className="error-message">{errors.general}</div>}
+
 
                     <button type="submit" className="btn-registro" disabled={loading}>
                         {loading ? 'Registrando...' : 'Registrarse'}
                     </button>
+
 
                     <button type="button" className="btn-volver" onClick={onVolver} disabled={loading}>
                         Volver al Login
                     </button>
                 </form>
             </div>
+
 
             {/* Modal de éxito */}
             {mostrarModalExito && (
@@ -329,5 +365,6 @@ function Registro({ onVolver }) {
         </>
     );
 }
+
 
 export default Registro;

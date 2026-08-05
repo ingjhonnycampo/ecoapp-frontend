@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
+// ✅ Agrega esto
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function MiPerfil() {
   const [usuario, setUsuario] = useState(null);
   const [perfil, setPerfil] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
   const [editando, setEditando] = useState(false);
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
+
 
   const [cambiandoPass, setCambiandoPass] = useState(false);
   const [passActual, setPassActual] = useState('');
@@ -24,11 +29,13 @@ function MiPerfil() {
   const [mostrarPassNueva, setMostrarPassNueva] = useState(false);
   const [mostrarConfirmarNueva, setMostrarConfirmarNueva] = useState(false);
 
+
   useEffect(() => {
     const usuarioStr = localStorage.getItem('usuario');
     const usuarioData = usuarioStr ? JSON.parse(usuarioStr) : null;
     setUsuario(usuarioData);
   }, []);
+
 
   useEffect(() => {
     if (!usuario) {
@@ -36,14 +43,17 @@ function MiPerfil() {
       return;
     }
 
+
     const cargarPerfil = async () => {
       try {
         setLoading(true);
 
+
         const token = localStorage.getItem('token');
 
+
         const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/perfil_estudiante.php',
+          `${BASE_URL}/perfil_estudiante.php`,
           {
             method: 'GET',
             headers: {
@@ -53,7 +63,9 @@ function MiPerfil() {
           }
         );
 
+
         const data = await response.json();
+
 
         if (data.success && data.data) {
           setPerfil(data.data);
@@ -70,18 +82,22 @@ function MiPerfil() {
       }
     };
 
+
     cargarPerfil();
   }, [usuario]);
+
 
   const handleActualizarPerfil = async (e) => {
     e.preventDefault();
     setMensaje({ tipo: '', texto: '' });
 
+
     try {
       const token = localStorage.getItem('token');
 
+
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/actualizar_perfil_estudiante.php',
+        `${BASE_URL}/actualizar_perfil_estudiante.php`,
         {
           method: 'POST',
           headers: {
@@ -92,7 +108,9 @@ function MiPerfil() {
         }
       );
 
+
       const data = await response.json();
+
 
       if (data.success) {
         setMensaje({ tipo: 'success', texto: 'Perfil actualizado correctamente.' });
@@ -100,7 +118,7 @@ function MiPerfil() {
         // Recargar perfil
         const token2 = localStorage.getItem('token');
         const res2 = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/perfil_estudiante.php',
+          `${BASE_URL}/perfil_estudiante.php`,
           {
             method: 'GET',
             headers: {
@@ -122,20 +140,24 @@ function MiPerfil() {
     }
   };
 
+
   const handleCambiarContrasena = async (e) => {
     e.preventDefault();
     setMensajePass({ tipo: '', texto: '' });
+
 
     if (passNueva !== confirmarNueva) {
       setMensajePass({ tipo: 'error', texto: 'Las nuevas contraseñas no coinciden.' });
       return;
     }
 
+
     try {
       const token = localStorage.getItem('token');
 
+
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/cambiar_contrasena_estudiante.php',
+        `${BASE_URL}/cambiar_contrasena_estudiante.php`,
         {
           method: 'POST',
           headers: {
@@ -150,21 +172,24 @@ function MiPerfil() {
         }
       );
 
+
       const data = await response.json();
 
+
       if (data.success) {
-  setMensajePass({ tipo: 'success', texto: 'Contraseña actualizada correctamente.' });
-  
-  // Opcional: cerrar el formulario después de 2 segundos
-  setTimeout(() => {
-    setCambiandoPass(false);
-    setPassActual('');
-    setPassNueva('');
-    setConfirmarNueva('');
-    setMensajePass({ tipo: '', texto: '' });
-  }, 2000);
-  
-  return; // Salimos para que no haga nada más
+        setMensajePass({ tipo: 'success', texto: 'Contraseña actualizada correctamente.' });
+        
+        // Opcional: cerrar el formulario después de 2 segundos
+        setTimeout(() => {
+          setCambiandoPass(false);
+          setPassActual('');
+          setPassNueva('');
+          setConfirmarNueva('');
+          setMensajePass({ tipo: '', texto: '' });
+        }, 2000);
+        
+        return; // Salimos para que no haga nada más
+
 
       } else {
         setMensajePass({ tipo: 'error', texto: data.message || 'Error al cambiar contraseña.' });
@@ -175,6 +200,7 @@ function MiPerfil() {
     }
   };
 
+
   if (!usuario) {
     return (
       <div style={{ padding: '2rem' }}>
@@ -184,21 +210,25 @@ function MiPerfil() {
     );
   }
 
+
   return (
     <div style={{ padding: '2rem' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
         👤 Mi Perfil
       </h1>
 
+
       {loading && (
         <p style={{ textAlign: 'center' }}>Cargando perfil...</p>
       )}
+
 
       {!loading && !perfil && (
         <p style={{ textAlign: 'center' }}>
           No se pudo cargar la información de tu perfil.
         </p>
       )}
+
 
       {!loading && perfil && (
         <>
@@ -220,6 +250,7 @@ function MiPerfil() {
               </p>
             </div>
 
+
             <div
               style={{
                 display: 'grid',
@@ -234,12 +265,14 @@ function MiPerfil() {
                 <div style={{ fontWeight: 600, fontSize: '16px' }}>{perfil.rol}</div>
               </div>
 
+
               <div>
                 <div style={{ color: '#666', fontSize: '12px' }}>Colegio</div>
                 <div style={{ fontWeight: 600, fontSize: '16px' }}>
                   {perfil.colegio_nombre || '—'}
                 </div>
               </div>
+
 
               <div style={{ gridColumn: '1 / -1' }}>
                 <div style={{ color: '#666', fontSize: '12px' }}>Curso</div>
@@ -251,6 +284,7 @@ function MiPerfil() {
                 </div>
               </div>
             </div>
+
 
             {/* Mensaje de perfil */}
             {mensaje.texto && (
@@ -267,6 +301,7 @@ function MiPerfil() {
                 {mensaje.texto}
               </div>
             )}
+
 
             {/* Sección de datos básicos */}
             {!editando ? (
@@ -285,27 +320,30 @@ function MiPerfil() {
                   </div>
                 </div>
 
-                <button
-  className="perfil-btn"
-  onClick={() => setEditando(true)}
-  style={{ marginRight: '0.5rem' }}
->
-  ✏️ Editar datos
-</button>
 
-<button
-  className="perfil-btn"
-  onClick={() => {
-    setCambiandoPass(true);
-    setMensajePass({ tipo: '', texto: '' });
-  }}
->
-  🔑 Cambiar contraseña
-</button>
+                <button
+                  className="perfil-btn"
+                  onClick={() => setEditando(true)}
+                  style={{ marginRight: '0.5rem' }}
+                >
+                  ✏️ Editar datos
+                </button>
+
+
+                <button
+                  className="perfil-btn"
+                  onClick={() => {
+                    setCambiandoPass(true);
+                    setMensajePass({ tipo: '', texto: '' });
+                  }}
+                >
+                  🔑 Cambiar contraseña
+                </button>
               </>
             ) : (
               <form onSubmit={handleActualizarPerfil}>
                 <h3 style={{ marginBottom: '0.75rem' }}>Editar datos</h3>
+
 
                 <div style={{ marginBottom: '1rem' }}>
                   <label style={{ display: 'block', marginBottom: '0.35rem', fontSize: '13px' }}>
@@ -326,6 +364,7 @@ function MiPerfil() {
                   />
                 </div>
 
+
                 <div style={{ marginBottom: '1rem' }}>
                   <label style={{ display: 'block', marginBottom: '0.35rem', fontSize: '13px' }}>
                     Email
@@ -345,6 +384,7 @@ function MiPerfil() {
                   />
                 </div>
 
+
                 <button
                   type="submit"
                   className="action-btn"
@@ -352,6 +392,7 @@ function MiPerfil() {
                 >
                   💾 Guardar cambios
                 </button>
+
 
                 <button
                   type="button"
@@ -366,6 +407,7 @@ function MiPerfil() {
               </form>
             )}
 
+
             {/* Cambiar contraseña */}
             {cambiandoPass && (
               <form
@@ -378,6 +420,7 @@ function MiPerfil() {
                 }}
               >
                 <h3 style={{ marginBottom: '0.75rem' }}>Cambiar contraseña</h3>
+
 
                 {/* Mensaje de contraseña */}
                 {mensajePass.texto && (
@@ -394,6 +437,7 @@ function MiPerfil() {
                     {mensajePass.texto}
                   </div>
                 )}
+
 
                 <div style={{ marginBottom: '1rem' }}>
                   <label style={{ display: 'block', marginBottom: '0.35rem', fontSize: '13px' }}>
@@ -418,6 +462,7 @@ function MiPerfil() {
                   </div>
                 </div>
 
+
                 <div style={{ marginBottom: '1rem' }}>
                   <label style={{ display: 'block', marginBottom: '0.35rem', fontSize: '13px' }}>
                     Nueva contraseña
@@ -440,6 +485,7 @@ function MiPerfil() {
                     </button>
                   </div>
                 </div>
+
 
                 <div style={{ marginBottom: '1rem' }}>
                   <label style={{ display: 'block', marginBottom: '0.35rem', fontSize: '13px' }}>
@@ -464,10 +510,12 @@ function MiPerfil() {
                   </div>
                 </div>
 
+
                 <div className="perfil-buttons">
                   <button type="submit" className="perfil-btn perfil-btn-primary">
                     💾 Guardar contraseña
                   </button>
+
 
                   <button
                     type="button"
@@ -491,5 +539,6 @@ function MiPerfil() {
     </div>
   );
 }
+
 
 export default MiPerfil;

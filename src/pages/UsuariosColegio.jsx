@@ -6,6 +6,8 @@ import ModalConfirmar from '../components/ModalConfirmar';
 import ModalCambiarPassword from '../components/ModalCambiarPassword';
 import '../components/GestionColegio.css';
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function UsuariosColegio() {
   const { usuario, colegio } = useContext(AuthContext);
 
@@ -40,7 +42,7 @@ function UsuariosColegio() {
     try {
       setLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php?colegio_id=${colegioId}`
+        `${BASE_URL}/usuarios_colegio.php?colegio_id=${colegioId}`
       );
       const data = await response.json();
       if (data.success) {
@@ -104,7 +106,7 @@ function UsuariosColegio() {
   const desactivarUsuario = async (id) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php?id=${id}`,
+        `${BASE_URL}/usuarios_colegio.php?id=${id}`,
         { method: 'DELETE' }
       );
       const data = await response.json();
@@ -121,7 +123,7 @@ function UsuariosColegio() {
   const activarUsuario = async (id) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/usuarios_colegio.php`,
+        `${BASE_URL}/usuarios_colegio.php`,
         {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },

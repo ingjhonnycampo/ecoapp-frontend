@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { colegiosAPI } from '../services/api';
 import './Colegios.css';
+
+// ✅ Agregamos esto al inicio
 const BASE_UPLOADS = import.meta.env.VITE_UPLOADS_BASE_URL;
+
 function Colegios() {
     const navigate = useNavigate();
     const { usuario } = useContext(AuthContext);
@@ -24,9 +27,11 @@ function Colegios() {
         escudo: null
     });
 
+
     useEffect(() => {
         cargarColegios();
     }, []);
+
 
     const cargarColegios = async () => {
         try {
@@ -38,6 +43,7 @@ function Colegios() {
         }
     };
 
+
     const mostrarMensaje = (tipo, mensaje) => {
         setModalMensaje({ show: true, tipo, mensaje });
         setTimeout(() => {
@@ -45,17 +51,21 @@ function Colegios() {
         }, 3000);
     };
 
+
     const abrirDetalles = (colegio) => {
         setColegioSeleccionado(colegio);
     };
+
 
     const cerrarDetalles = () => {
         setColegioSeleccionado(null);
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
 
         try {
             const dataToSend = new FormData();
@@ -69,6 +79,7 @@ function Colegios() {
             if (formData.escudo) {
                 dataToSend.append('escudo', formData.escudo);
             }
+
 
             if (editando) {
                 dataToSend.append('id', editando);
@@ -89,6 +100,7 @@ function Colegios() {
         }
     };
 
+
     const handleEdit = (colegio) => {
         setFormData({
             nombre: colegio.nombre,
@@ -99,12 +111,13 @@ function Colegios() {
             email: colegio.email || '',
             escudo: null
         });
-setPreviewEscudo(
-  colegio.escudo ? `${BASE_UPLOADS}/escudos/${colegio.escudo}` : null
-);
+        setPreviewEscudo(
+            colegio.escudo ? `${BASE_UPLOADS}/escudos/${colegio.escudo}` : null
+        );
         setEditando(colegio.id);
         setShowForm(true);
     };
+
 
     const handleDelete = async (id) => {
         if (window.confirm('¿Está seguro de desactivar este colegio?')) {
@@ -119,12 +132,14 @@ setPreviewEscudo(
         }
     };
 
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
+
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -138,10 +153,12 @@ setPreviewEscudo(
                 return;
             }
 
+
             setFormData({
                 ...formData,
                 escudo: file
             });
+
 
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -150,6 +167,7 @@ setPreviewEscudo(
             reader.readAsDataURL(file);
         }
     };
+
 
     const cerrarFormulario = () => {
         setShowForm(false);
@@ -165,6 +183,7 @@ setPreviewEscudo(
             escudo: null
         });
     };
+
 
     return (
         <div className="colegios-container">
@@ -198,6 +217,7 @@ setPreviewEscudo(
                 )}
             </div>
 
+
             {/* Grid de Tarjetas Elegantes */}
             <div className="colegios-grid">
                 {colegios.length === 0 ? (
@@ -217,7 +237,7 @@ setPreviewEscudo(
                                 <div className="card-escudo-grande">
                                     {colegio.escudo ? (
                                         <img 
-src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
+                                            src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                                             alt={colegio.nombre}
                                         />
                                     ) : (
@@ -226,10 +246,12 @@ src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                                 </div>
                             </div>
 
+
                             {/* Contenido */}
                             <div className="card-contenido" onClick={() => abrirDetalles(colegio)}>
                                 <h3 className="card-nombre-principal">{colegio.nombre}</h3>
                                 <span className="card-codigo-principal">{colegio.codigo}</span>
+
 
                                 <div className="card-detalles-preview">
                                     {colegio.ciudad && (
@@ -247,6 +269,7 @@ src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                                 </div>
                             </div>
 
+
                             {/* Acciones */}
                             <div className="card-contenido">
                                 <div className="card-acciones-footer">
@@ -257,6 +280,7 @@ src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                                         <span>👁️</span>
                                         <span>Ver Más</span>
                                     </button>
+
 
                                     {usuario?.rol === 'superadmin' && (
                                         <button 
@@ -271,6 +295,7 @@ src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                                         </button>
                                     )}
 
+
                                     {(usuario?.rol === 'superadmin' || 
                                       (usuario?.rol === 'coordinador' && usuario.colegio_id === colegio.id)) && (
                                         <button 
@@ -284,6 +309,7 @@ src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                                             <span>✏️</span>
                                         </button>
                                     )}
+
 
                                     {usuario?.rol === 'superadmin' && (
                                         <button 
@@ -304,6 +330,7 @@ src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                 )}
             </div>
 
+
             {/* Modal de Detalles */}
             {colegioSeleccionado && (
                 <div className="modal-detalles-overlay" onClick={cerrarDetalles}>
@@ -313,10 +340,11 @@ src={`${BASE_UPLOADS}/escudos/${colegio.escudo}`}
                                 ✕
                             </button>
 
+
                             <div className="modal-escudo-grande">
                                 {colegioSeleccionado.escudo ? (
                                     <img 
-src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
+                                        src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                         alt={colegioSeleccionado.nombre}
                                     />
                                 ) : (
@@ -324,9 +352,11 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                 )}
                             </div>
 
+
                             <h2>{colegioSeleccionado.nombre}</h2>
                             <span className="modal-codigo-badge">DANE: {colegioSeleccionado.codigo}</span>
                         </div>
+
 
                         <div className="modal-detalles-body">
                             {colegioSeleccionado.ciudad && (
@@ -339,6 +369,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                 </div>
                             )}
 
+
                             {colegioSeleccionado.direccion && (
                                 <div className="detalle-completo">
                                     <div className="detalle-icono-completo">📍</div>
@@ -348,6 +379,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                     </div>
                                 </div>
                             )}
+
 
                             {colegioSeleccionado.telefono && (
                                 <div className="detalle-completo">
@@ -359,6 +391,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                 </div>
                             )}
 
+
                             {colegioSeleccionado.email && (
                                 <div className="detalle-completo">
                                     <div className="detalle-icono-completo">📧</div>
@@ -368,6 +401,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                     </div>
                                 </div>
                             )}
+
 
                             <div className="detalle-completo">
                                 <div className="detalle-icono-completo">📅</div>
@@ -387,6 +421,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                 </div>
             )}
 
+
             {/* Modal de Formulario */}
             {showForm && (
                 <div className="modal-overlay" onClick={cerrarFormulario}>
@@ -401,6 +436,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                             </div>
                             <button className="btn-close-modal" onClick={cerrarFormulario}>✕</button>
                         </div>
+
 
                         <form onSubmit={handleSubmit} className="form-elegante">
                             <div className="escudo-upload-section">
@@ -425,6 +461,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                 </label>
                             </div>
 
+
                             <div className="form-grid">
                                 <div className="form-field">
                                     <label>
@@ -442,6 +479,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                     />
                                 </div>
 
+
                                 <div className="form-field">
                                     <label>
                                         <span className="field-icon">🔢</span>
@@ -458,6 +496,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                     />
                                 </div>
 
+
                                 <div className="form-field">
                                     <label>
                                         <span className="field-icon">🌆</span>
@@ -472,6 +511,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                         className="input-elegante"
                                     />
                                 </div>
+
 
                                 <div className="form-field">
                                     <label>
@@ -488,6 +528,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                     />
                                 </div>
 
+
                                 <div className="form-field">
                                     <label>
                                         <span className="field-icon">📞</span>
@@ -502,6 +543,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                         className="input-elegante"
                                     />
                                 </div>
+
 
                                 <div className="form-field">
                                     <label>
@@ -518,6 +560,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                                     />
                                 </div>
                             </div>
+
 
                             <div className="form-actions">
                                 <button 
@@ -551,6 +594,7 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
                 </div>
             )}
 
+
             {/* Modal de Mensajes */}
             {modalMensaje.show && (
                 <div className="modal-mensaje-overlay">
@@ -568,5 +612,6 @@ src={`${BASE_UPLOADS}/escudos/${colegioSeleccionado.escudo}`}
         </div>
     );
 }
+
 
 export default Colegios;

@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { estadisticasAPI, reciclajeAPI } from '../services/api';
 import '../components/GestionColegio.css';
-
+const BASE_UPLOADS = import.meta.env.VITE_UPLOADS_BASE_URL;
 function formatear1Decimal(valor) {
   if (valor == null || isNaN(valor)) return '0.0';
   return Number(valor).toFixed(1);
@@ -134,22 +134,23 @@ function RankingColegio() {
   })();
 
   const imprimirSeccion = (ref, opciones = {}) => {
-    if (!ref.current || !colegio) return;
-    const { titulo, subtitulo } = opciones;
-    const contenido = ref.current.innerHTML;
-    const ventana = window.open('', '_blank', 'width=900,height=700');
+  if (!ref.current || !colegio) return;
+  const { titulo, subtitulo } = opciones;
+  const contenido = ref.current.innerHTML;
+  const ventana = window.open('', '_blank', 'width=900,height=700');
 
-    const encabezadoHtml = `
-      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;margin-bottom:16px;">
-        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px;">
-          <img src="${import.meta.env.VITE_UPLOADS_BASE_URL}/escudos/${colegio.escudo}" alt="${colegio.nombre}" style="width:70px;height:70px;object-fit:contain;display:block;" />
-          <img src="/imagen.png" alt="Logo EcoApp" style="width:70px;height:70px;object-fit:contain;display:block;" />
-        </div>
-        <h1 style="margin:0;font-size:24pt;">${colegio.nombre}</h1>
-        ${titulo ? `<h2 style="margin:0;font-size:16pt;">${titulo}</h2>` : ''}
-        ${subtitulo ? `<p style="margin:2px 0 0 0;font-size:11pt;color:#555;">${subtitulo}</p>` : ''}
+
+  const encabezadoHtml = `
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px;">
+        <img src="${BASE_UPLOADS}/escudos/${colegio.escudo}" alt="${colegio.nombre}" style="width:70px;height:70px;object-fit:contain;display:block;" />
+        <img src="/imagen.png" alt="Logo EcoApp" style="width:70px;height:70px;object-fit:contain;display:block;" />
       </div>
-    `;
+      <h1 style="margin:0;font-size:24pt;">${colegio.nombre}</h1>
+      ${titulo ? `<h2 style="margin:0;font-size:16pt;">${titulo}</h2>` : ''}
+      ${subtitulo ? `<p style="margin:2px 0 0 0;font-size:11pt;color:#555;">${subtitulo}</p>` : ''}
+    </div>
+  `;
 
     ventana.document.write(`
       <html>

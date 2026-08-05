@@ -3,6 +3,8 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./ReportesGlobales.css";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function ReportesGlobales() {
   const { usuario } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,7 +22,6 @@ function ReportesGlobales() {
 
   useEffect(() => {
     if (!usuario || usuario.rol !== "superadmin") {
-      // Sólo superadmin entra aquí, si quieres permitir coordinador, ajusta rol.
       navigate("/");
       return;
     }
@@ -31,9 +32,9 @@ function ReportesGlobales() {
         setErrorGlobal("");
 
         const [resColegios, resUsuarios, resGlobal] = await Promise.all([
-          fetch("${import.meta.env.VITE_API_BASE_URL}/contar_colegios.php"),
-          fetch("${import.meta.env.VITE_API_BASE_URL}/contar_usuarios.php"),
-          fetch("${import.meta.env.VITE_API_BASE_URL}/estadisticas_globales.php"),
+          fetch(`${BASE_URL}/contar_colegios.php`),
+          fetch(`${BASE_URL}/contar_usuarios.php`),
+          fetch(`${BASE_URL}/estadisticas_globales.php`),
         ]);
 
         const dataColegios = await resColegios.json();

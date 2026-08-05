@@ -12,6 +12,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// ✅ Agrega esto
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 // Reutilizamos el mismo mapa de meses que en Reportes.jsx
 const mapaMeses = {
   "01": "Enero",
@@ -79,7 +82,7 @@ function ReporteInstitucion() {
 
         // Reutilizamos el endpoint global de estadísticas mensuales por colegio
         const res = await fetch(
-          "${import.meta.env.VITE_API_BASE_URL}/estadisticas_mensuales_colegios.php"
+          `${BASE_URL}/estadisticas_mensuales_colegios.php`
         );
         const data = await res.json();
 
