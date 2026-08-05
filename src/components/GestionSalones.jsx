@@ -3,6 +3,8 @@ import './GestionSalones.css';
 import ModalMensaje from './ModalMensaje';
 import ModalConfirmar from './ModalConfirmar';
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function GestionSalones({ colegioId, colegioNombre }) {
     const [modalMensaje, setModalMensaje] = useState({ mostrar: false, tipo: '', mensaje: '' }); 
     const [modalConfirmar, setModalConfirmar] = useState({ mostrar: false, titulo: '', mensaje: '', onConfirmar: null });
@@ -28,7 +30,7 @@ function GestionSalones({ colegioId, colegioNombre }) {
 
     const cargarGrados = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/grados_estandar.php`);
+            const response = await fetch(`${BASE_URL}/grados_estandar.php`);
             const data = await response.json();
             if (data.success) {
                 setGrados(data.data);
@@ -42,9 +44,9 @@ function GestionSalones({ colegioId, colegioNombre }) {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones.php?colegio_id=${colegioId}`, {
+            const response = await fetch(`${BASE_URL}/salones.php?colegio_id=${colegioId}`, {
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             });
             const data = await response.json();
@@ -90,9 +92,9 @@ function GestionSalones({ colegioId, colegioNombre }) {
         e.preventDefault();
 
         const token = localStorage.getItem('token');
-        const url = modoEdicion 
-            ? `${import.meta.env.VITE_API_BASE_URL}/salones.php?id=${salonSeleccionado.id}`
-            : `${import.meta.env.VITE_API_BASE_URL}/salones.php';
+        const url = modoEdicion
+            ? `${BASE_URL}/salones.php?id=${salonSeleccionado.id}`
+            : `${BASE_URL}/salones.php`;
         const method = modoEdicion ? 'PUT' : 'POST';
 
         const dataToSend = {
@@ -109,7 +111,7 @@ function GestionSalones({ colegioId, colegioNombre }) {
                 method,
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(dataToSend)
             });
@@ -141,11 +143,11 @@ function GestionSalones({ colegioId, colegioNombre }) {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones.php?id=${salon.id}`, {
+            const response = await fetch(`${BASE_URL}/salones.php?id=${salon.id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     id: salon.id,
@@ -178,10 +180,10 @@ function GestionSalones({ colegioId, colegioNombre }) {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/salones.php?id=${salon.id}`, {
+            const response = await fetch(`${BASE_URL}/salones.php?id=${salon.id}`, {
                 method: 'DELETE',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             });
 
@@ -197,7 +199,6 @@ function GestionSalones({ colegioId, colegioNombre }) {
         }
     };
 
-    // AJUSTE: filtro por NOMBRE de grado, que coincide con grado_nombre
     const salonesFiltrados = salones.filter((salon) => {
         const textoBusqueda = busqueda.toLowerCase();
 
@@ -231,7 +232,6 @@ function GestionSalones({ colegioId, colegioNombre }) {
                     onChange={(e) => setBusqueda(e.target.value)}
                     className="input-busqueda"
                 />
-                {/* AJUSTE: el value es el NOMBRE del grado */}
                 <select
                     value={filtroGrado}
                     onChange={(e) => setFiltroGrado(e.target.value)}
@@ -320,7 +320,6 @@ function GestionSalones({ colegioId, colegioNombre }) {
                 </p>
             </div>
 
-            {/* MODAL CREAR/EDITAR */}
             {modalAbierto && (
                 <div className="modal-overlay" onClick={() => setModalAbierto(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -397,7 +396,6 @@ function GestionSalones({ colegioId, colegioNombre }) {
                 </div>
             )}
 
-            {/* MODAL DE MENSAJE */}
             {modalMensaje.mostrar && (
                 <ModalMensaje
                     tipo={modalMensaje.tipo}
@@ -409,7 +407,6 @@ function GestionSalones({ colegioId, colegioNombre }) {
                 />
             )}
 
-            {/* MODAL DE CONFIRMACIÓN */}
             {modalConfirmar.mostrar && (
                 <ModalConfirmar
                     titulo={modalConfirmar.titulo}
